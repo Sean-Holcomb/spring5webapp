@@ -52,10 +52,16 @@ public class BootStrapData implements CommandLineRunner {
         publisher.setState("Washington");
         publisher.setZipcode("12345");
 
+        ddd.setPublisher(publisher);
+        publisher.getBooks().add(ddd);
+        publisher.getBooks().add(noEJB);
+        noEJB.setPublisher(publisher);
+
         publisherRepository.save(publisher);
 
         System.out.println("Started in Boootstrap");
         System.out.println("Number of Books: " + bookRepository.count());
         System.out.println("Number of Publishers: " + publisherRepository.count());
+        System.out.println("Publisher Number of Books: " + publisher.getBooks().size());
     }
 }
